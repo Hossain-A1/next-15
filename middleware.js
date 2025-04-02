@@ -1,6 +1,6 @@
 import { NextResponse as res } from "next/server";
 export const config = {
-  matcher:"/admin/:path*",
+  matcher: "/admin/:path*",
 };
 export const middleware = async (request) => {
   const accessTkn = request.cookies.get("accessToken");
@@ -8,7 +8,6 @@ export const middleware = async (request) => {
   if (!accessTkn) {
     return res.redirect(new URL("/login", request.url));
   }
-
 
   const api = await fetch(`${process.env.SERVER}/api/session`, {
     method: "post",
@@ -21,5 +20,11 @@ export const middleware = async (request) => {
   if (!api.ok) {
     return res.redirect(new URL("/login", request.url));
   }
-  return  res.next();
+
+  const body = await api.json();
+  const result = res.next();
+  result.cookies.set("session", JSON.stringify(body), {
+    maxAge: 7 * 24 * 60 * 60,
+  });
+  return result
 };
