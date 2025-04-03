@@ -1,7 +1,12 @@
-import React from "react";
+import AdminSection from "@/components/admin-component/AdminSection";
 
 const AdminRoute = () => {
-  return <div>AdminRoute</div>;
-};
+  return (
+    <>
+    <AdminSection/>
+    </>
 
-export default AdminRoute;
+  )
+}
+
+export default AdminRoute

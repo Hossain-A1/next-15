@@ -22,9 +22,9 @@ export const middleware = async (request) => {
   }
 
   const body = await api.json();
-  const result = res.next();
-  result.cookies.set("session", JSON.stringify(body), {
+  const session = res.next();
+  session.cookies.set("session", JSON.stringify(body), {
     maxAge: 7 * 24 * 60 * 60,
   });
-  return result
+  return session;
 };

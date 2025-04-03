@@ -9,7 +9,7 @@ const menus = [
 ];
 const Layout = ({ children }) => {
   const pathname = usePathname();
-  const blackList = ["/login", "/signup"];
+  const blackList = ["/login", "/signup","/admin"];
 
   const isBlacklist = blackList.includes(pathname);
 
