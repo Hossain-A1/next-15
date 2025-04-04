@@ -1,6 +1,12 @@
 import Blog from "@/components/Blog";
-import { metadata } from "../layout";
-metadata.title = "Blog";
+
+export const metadata = {
+  title: "Blog",
+};
+
+// Revalidate every 60 seconds
+export const revalidate = 86400
+
 const BlogRoute = async () => {
   const res = await fetch(`${process.env.SERVER}/api/blog`);
 
