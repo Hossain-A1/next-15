@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
 
   return (
     <div>
-      <nav className='sticky bg-white shadow-lg top-0 left-0 w-full px-[10%] py-6 flex justify-between items-center'>
+      <nav className='sticky z-[999] bg-white shadow-lg top-0 left-0 w-full px-[10%] py-6 flex justify-between items-center'>
         <h1 className='text-2xl font-bold'>HeroTech</h1>
 
         <div className='flex items-center gap-16'>

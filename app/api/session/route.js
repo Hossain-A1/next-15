@@ -6,7 +6,6 @@ export const POST = async (request) => {
   try {
     await connectDB()
     const { token } = await request.json();
-    console.log(token);
     if (!token) {
       return res.json({ success: false, error: "Token is required" }, { status: 400 });
     }

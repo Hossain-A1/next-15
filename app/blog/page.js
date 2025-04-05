@@ -4,14 +4,23 @@ export const metadata = {
   title: "Blog",
 };
 
-// Revalidate every 60 seconds
-export const revalidate = 86400
+export const revalidate = 86400;
+
+// Optional: force dynamic if you want to skip static build errors
+export const dynamic = "force-dynamic";
 
 const BlogRoute = async () => {
-  const res = await fetch(`${process.env.SERVER}/api/blog`);
+  let blogs = [];
 
-  const data = await res.json();
-  return <Blog blogs={data} />;
+  try {
+    const res = await fetch(`${process.env.SERVER}/api/blog`);
+    if (!res.ok) throw new Error("Failed to fetch blogs");
+    blogs = await res.json();
+  } catch (err) {
+    console.error("Build-time fetch error in /blog:", err.message);
+  }
+
+  return <Blog blogs={blogs} />;
 };
 
 export default BlogRoute;
